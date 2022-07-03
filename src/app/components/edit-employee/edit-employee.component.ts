@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Employee } from 'src/app/employee';
+import { Employee } from '../../employee';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-employee',
   templateUrl: './edit-employee.component.html',
-  styleUrls: ['./edit-employee.component.scss']
+  styleUrls: ['./edit-employee.component.scss'],
 })
 export class EditEmployeeComponent implements OnInit {
   @Input() set employee(employee: Employee) {
@@ -17,10 +17,7 @@ export class EditEmployeeComponent implements OnInit {
   }
   form: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    public modal: NgbActiveModal
-  ) {
+  constructor(private fb: FormBuilder, public modal: NgbActiveModal) {
     this.form = this.fb.group({
       first: ['', Validators.required],
       last: ['', Validators.required],
@@ -30,28 +27,26 @@ export class EditEmployeeComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
-  get phone () {
+  ngOnInit(): void {}
+  get phone() {
     return this.form.controls['phone'];
   }
-  
-  get first () {
+
+  get first() {
     return this.form.controls['first'];
   }
 
-  get last () {
+  get last() {
     return this.form.controls['last'];
   }
 
-  get email () {
+  get email() {
     return this.form.controls['email'];
   }
 
-  get address () {
+  get address() {
     return this.form.controls['address'];
   }
-
 
   submit() {
     this.form.markAllAsTouched();
@@ -61,11 +56,11 @@ export class EditEmployeeComponent implements OnInit {
         text: 'data changed successfully',
         target: '#custom-target',
         customClass: {
-          container: 'position-absolute'
+          container: 'position-absolute',
         },
         toast: true,
-        position: 'top-right'
-      })
+        position: 'top-right',
+      });
     }
   }
 }
